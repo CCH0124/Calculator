@@ -29,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
     float mValueOne, mValueTwo;
     boolean crunchifyAddition, mSubtract, crunchifyMultiplication, crunchifyDivision;
 
+    private void isZero(EditText num){
+        if(num.getText().toString().equals("0")){
+            num.setText(null);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,13 +61,18 @@ public class MainActivity extends AppCompatActivity {
         btn_zero.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                display.setText(display.getText() + "0");
+                if (display.getText().toString().equals("0")){
+                    display.setText("0");
+                } else {
+                    display.setText(display.getText() + "0");
+                }
             }
         });
 
         btn_one.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                isZero(display);
                 display.setText(display.getText() + "1");
             }
         });
@@ -70,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         btn_two.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                isZero(display);
                 display.setText(display.getText() + "2");
             }
         });
@@ -77,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         btn_three.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                isZero(display);
                 display.setText(display.getText() + "3");
             }
         });
@@ -84,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         btn_four.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                isZero(display);
                 display.setText(display.getText() + "4");
             }
         });
@@ -91,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         btn_five.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                isZero(display);
                 display.setText(display.getText() + "5");
             }
         });
@@ -98,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         btn_six.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                isZero(display);
                 display.setText(display.getText() + "6");
             }
         });
@@ -105,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         btn_seven.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                isZero(display);
                 display.setText(display.getText() + "7");
             }
         });
@@ -112,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         btn_eight.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                isZero(display);
                 display.setText(display.getText() + "8");
             }
         });
@@ -119,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         btn_nine.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                isZero(display);
                 display.setText(display.getText() + "9");
             }
         });
