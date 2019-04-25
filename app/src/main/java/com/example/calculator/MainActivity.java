@@ -3,9 +3,10 @@ package com.example.calculator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.calculator.expression.ExpressionHandle;
 
 public class MainActivity extends AppCompatActivity {
     Button btn_zero,
@@ -26,14 +27,8 @@ public class MainActivity extends AppCompatActivity {
             btn_clear,
             btn_eql;
     EditText display;
-    float mValueOne, mValueTwo;
-    boolean crunchifyAddition, mSubtract, crunchifyMultiplication, crunchifyDivision;
-
-    private void isZero(EditText num){
-        if(num.getText().toString().equals("0")){
-            num.setText(null);
-        }
-    }
+    ExpressionHandle eh = new ExpressionHandle();
+    private Boolean is = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,166 +56,115 @@ public class MainActivity extends AppCompatActivity {
         btn_zero.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if (display.getText().toString().equals("0")){
-                    display.setText("0");
-                } else {
-                    display.setText(display.getText() + "0");
-                }
+                eh.handleDisplayExpression("0");
+                display.setText(eh.getExpression());
             }
         });
-
         btn_one.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                isZero(display);
-                display.setText(display.getText() + "1");
+                eh.handleDisplayExpression("1");
+                display.setText(eh.getExpression());
             }
         });
-
         btn_two.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                isZero(display);
-                display.setText(display.getText() + "2");
+                eh.handleDisplayExpression("2");
+                display.setText(eh.getExpression());
             }
         });
-
         btn_three.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                isZero(display);
-                display.setText(display.getText() + "3");
+                eh.handleDisplayExpression("3");
+                display.setText(eh.getExpression());
             }
         });
-
         btn_four.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                isZero(display);
-                display.setText(display.getText() + "4");
+                eh.handleDisplayExpression("4");
+                display.setText(eh.getExpression());
             }
         });
-
         btn_five.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                isZero(display);
-                display.setText(display.getText() + "5");
+                eh.handleDisplayExpression("5");
+                display.setText(eh.getExpression());
             }
         });
-
         btn_six.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                isZero(display);
-                display.setText(display.getText() + "6");
+                eh.handleDisplayExpression("6");
+                display.setText(eh.getExpression());
             }
         });
-
         btn_seven.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                isZero(display);
-                display.setText(display.getText() + "7");
+                eh.handleDisplayExpression("7");
+                display.setText(eh.getExpression());
             }
         });
-
         btn_eight.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                isZero(display);
-                display.setText(display.getText() + "8");
+                eh.handleDisplayExpression("8");
+                display.setText(eh.getExpression());
             }
         });
-
         btn_nine.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                isZero(display);
-                display.setText(display.getText() + "9");
+                eh.handleDisplayExpression("9");
+                display.setText(eh.getExpression());
             }
         });
-
-        btn_add.setOnClickListener(new View.OnClickListener() {
+        btn_add.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-
-                if (display == null) {
-                    display.setText("");
-                } else {
-                    mValueOne = Float.parseFloat(display.getText() + "");
-                    crunchifyAddition = true;
-                    display.setText(null);
-                }
+            public void  onClick(View v){
+                eh.handleDisplayExpression("+");
+                display.setText(eh.getExpression());
             }
         });
-
-        btn_sub.setOnClickListener(new View.OnClickListener() {
+        btn_sub.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                mValueOne = Float.parseFloat(display.getText() + "");
-                mSubtract = true;
-                display.setText(null);
+            public void  onClick(View v){
+                eh.handleDisplayExpression("-");
+                display.setText(eh.getExpression());
             }
         });
-
-        btn_mul.setOnClickListener(new View.OnClickListener() {
+        btn_mul.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                mValueOne = Float.parseFloat(display.getText() + "");
-                crunchifyMultiplication = true;
-                display.setText(null);
+            public void  onClick(View v){
+                eh.handleDisplayExpression("*");
+                display.setText(eh.getExpression());
             }
         });
-
-        btn_div.setOnClickListener(new View.OnClickListener() {
+        btn_div.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                mValueOne = Float.parseFloat(display.getText() + "");
-                crunchifyDivision = true;
-                display.setText(null);
+            public void  onClick(View v){
+                eh.handleDisplayExpression("/");
+                display.setText(eh.getExpression());
             }
         });
-
-        btn_eql.setOnClickListener(new View.OnClickListener() {
+        btn_clear.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                mValueTwo = Float.parseFloat(display.getText() + "");
-
-                if (crunchifyAddition == true) {
-                    display.setText(mValueOne + mValueTwo + "");
-                    crunchifyAddition = false;
-                }
-
-                if (mSubtract == true) {
-                    display.setText(mValueOne - mValueTwo + "");
-                    mSubtract = false;
-                }
-
-                if (crunchifyMultiplication == true) {
-                    display.setText(mValueOne * mValueTwo + "");
-                    crunchifyMultiplication = false;
-                }
-
-                if (crunchifyDivision == true) {
-                    display.setText(mValueOne / mValueTwo + "");
-                    crunchifyDivision = false;
-                }
-            }
-        });
-
-        btn_clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            public void  onClick(View v){
                 display.setText("0");
+                is = false;
+                eh.clear();
+            }
+        });
+        btn_eql.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                display.setText(eh.getValueToString());
             }
         });
 
-        btn_float.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                display.setText(display.getText() + ".");
-            }
-        });
     }
 }
