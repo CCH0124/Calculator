@@ -1,5 +1,7 @@
 package com.example.calculator.expression;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -13,7 +15,13 @@ public class ExpressionHandle {
     private StringBuilder strBuilder = new StringBuilder();
 
     public void handleDisplayExpression(String s) {
-        strBuilder.insert(strBuilder.length(),s);
+        strBuilder.insert(strBuilder.length(), s);
+        /**
+         * 避免重複的 0
+         */
+        if (strBuilder.length() >= 2 && strBuilder.charAt(0) == '0'){
+            strBuilder.deleteCharAt(0);
+        }
     }
 
     public String getExpression() {
@@ -46,9 +54,12 @@ public class ExpressionHandle {
     private boolean isNum(String str) {
         Pattern pattern = Pattern.compile("[0-9]*");
         return pattern.matcher(str).matches();
-
     }
 
+    private boolean isNumDecimal(String str){
+        Pattern pattern = Pattern.compile("[0-9]*.[0-9]*");
+        return pattern.matcher(str).matches();
+    }
 
     private MathAlgorithm getOperatorInstace(String s) {
         switch (s) {
@@ -69,7 +80,7 @@ public class ExpressionHandle {
         MathContext con = new MathContext(getOperatorInstace(operatorStack.pop()));
         double num1 = arithmeticstack.pop();
         double num2 = arithmeticstack.pop();
-        arithmeticstack.push(con.execute(num1, num2));
+        arithmeticstack.push(con.execute(num2, num1));
     }
 
 
@@ -82,12 +93,11 @@ public class ExpressionHandle {
         String ch;
         while (st.hasMoreTokens()) {
             ch = st.nextToken();
-            if (isNum(ch)) {
+            if (isNum(ch) || isNumDecimal(ch)) {
                 arithmeticStack.push(Double.valueOf(ch));
             } else {
                 int currentOper = computeOper.get(ch);
                 if (currentOper != 0) {
-//                    int priorityOpera = ;
                     while (!operatorStack.empty() && computeOper.get(operatorStack.peek()) >= currentOper) {
                         compute(arithmeticStack, operatorStack);
                     }
@@ -110,7 +120,10 @@ public class ExpressionHandle {
 
     public String getValueToString() {
         setResult(handleCal(getExpression()));
+        clear();
+        handleDisplayExpression(Double.toString(getResult()));
         return Double.toString(getResult());
+
     }
 
 

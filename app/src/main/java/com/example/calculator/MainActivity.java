@@ -155,8 +155,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void  onClick(View v){
                 display.setText("0");
-                is = false;
                 eh.clear();
+            }
+        });
+        btn_float.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eh.handleDisplayExpression(".");
+                display.setText(eh.getExpression());
             }
         });
         btn_eql.setOnClickListener(new View.OnClickListener(){
