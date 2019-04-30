@@ -57,7 +57,12 @@ public class ExpressionHandle {
     }
 
     private boolean isNumDecimal(String str){
-        Pattern pattern = Pattern.compile("[0-9]*.[0-9]*");
+        Pattern pattern = Pattern.compile("[0-9]*\\.[0-9]*");
+        return pattern.matcher(str).matches();
+    }
+
+    private boolean isNumInt(String str){
+        Pattern pattern = Pattern.compile("[0-9]*\\.0");
         return pattern.matcher(str).matches();
     }
 
@@ -121,9 +126,13 @@ public class ExpressionHandle {
     public String getValueToString() {
         setResult(handleCal(getExpression()));
         clear();
-        handleDisplayExpression(Double.toString(getResult()));
-        return Double.toString(getResult());
-
+        if (isNumInt(Double.toString(getResult()))) {
+            handleDisplayExpression(Integer.toString((int)getResult()));
+            return Integer.toString((int)getResult());
+        } else {
+            handleDisplayExpression(Double.toString(getResult()));
+            return Double.toString(getResult());
+        }
     }
 
 
