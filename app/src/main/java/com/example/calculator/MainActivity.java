@@ -1,5 +1,6 @@
 package com.example.calculator;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
             btn_mul,
             btn_float,
             btn_clear,
-            btn_eql;
+            btn_eql,
+            btn_ES;
     EditText display;
     ExpressionHandle eh = new ExpressionHandle();
     private Boolean is = false;
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         btn_float = (Button) findViewById(R.id.buttonfloat);
         btn_clear = (Button) findViewById(R.id.buttonClear);
         btn_eql = (Button) findViewById(R.id.buttoneql);
+        btn_ES = (Button) findViewById(R.id.EC);
         display = (EditText) findViewById(R.id.display);
 
         btn_zero.setOnClickListener(new View.OnClickListener(){
@@ -169,6 +172,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 display.setText(eh.getValueToString());
+            }
+        });
+
+        btn_ES.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(MainActivity.this,EngineeringCalculator.class);
+                startActivity(it);
+                finish();
             }
         });
 

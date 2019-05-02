@@ -1,26 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".EngineeringCalculator">
+
     <EditText
         android:id="@+id/display"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/power"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/one"
+        android:layout_alignRight="@+id/one"
+        android:layout_below="@+id/display"
+        android:layout_marginTop="94dp"
+        android:text="@string/btn_power" />
+
+    <Button
+        android:id="@+id/sqrt"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/power"
+        android:layout_toLeftOf="@+id/three"
+        android:layout_toStartOf="@+id/three"
+        android:text="@string/btn_sqrt" />
 
     <Button
         android:id="@+id/one"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/four"
-        android:layout_alignRight="@+id/four"
-        android:layout_below="@+id/display"
-        android:layout_marginTop="94dp"
+        android:layout_below="@+id/power"
+        android:layout_toLeftOf="@+id/two"
         android:text="@string/btn_one" />
+
 
     <Button
         android:id="@+id/two"
@@ -193,14 +213,11 @@
         android:id="@+id/EC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/one"
         android:layout_alignEnd="@+id/display"
         android:layout_alignRight="@+id/display"
-        android:layout_marginStart="46dp"
+        android:layout_alignTop="@+id/power"
         android:layout_marginLeft="46dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="-94dp"
+        android:layout_marginStart="46dp"
         android:layout_toRightOf="@+id/three"
         android:text="@string/ec" />
 

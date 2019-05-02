@@ -17,4 +17,7 @@
     <string name="btn_div">/</string>
     <string name="btn_eql">=</string>
     <string name="btn_clear">C</string>
+    <string name="btn_power">^</string>
+    <string name="btn_sqrt">√</string>
+    <string name="ec">EC</string>
 </resources>

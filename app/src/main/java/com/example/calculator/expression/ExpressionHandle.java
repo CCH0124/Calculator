@@ -62,7 +62,7 @@ public class ExpressionHandle {
     }
 
     private boolean isNumInt(String str){
-        Pattern pattern = Pattern.compile("[0-9]*\\.0");
+        Pattern pattern = Pattern.compile("[-][0-9]*\\.0");
         return pattern.matcher(str).matches();
     }
 
