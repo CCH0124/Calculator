@@ -7,5 +7,7 @@ nkust, Android homework
 
 ### develop-2.0
 - 新增四則運算
+##### problem
 - 按鈕重複新增（+\-\*\/）
 - 等於重複按時需要繼續計算
+- 0 的顯示問題
